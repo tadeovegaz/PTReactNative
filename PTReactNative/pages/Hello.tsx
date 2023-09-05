@@ -1,14 +1,31 @@
-import { Text, View, StyleSheet, FlatList, Button, TouchableOpacity, SafeAreaView, TextInput, Image, ScrollView } from "react-native";
+import { Text, View, StyleSheet, FlatList, Button, TouchableOpacity, SafeAreaView, TextInput, Image, ScrollView, Modal } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useEffect, useState } from "react";
+import ModalClients from "../components/ModalClients";
+
+// const modalData = [
+//     { id: 1, text: 'Filtrar por fecha' },
+//     { id: 2, text: 'Filtrar por nombre' },
+//     { id: 3, text: 'Filtrar por estatus' },
+//     { id: 4, text: 'Sortear por fecha de menor a mayor' },
+//     { id: 5, text: 'Sortear por fecha de mayor a menor' },
+// ]
+
 
 
 const Hello = () => {
 
     const navigation = useNavigation();
+    const [modalVisible, setModalVisible] = useState(false);
+
+
+
+    console.log('ModalVisible:', modalVisible)
+
 
     return (
         <View style={{ flex: 1 }}>
@@ -24,49 +41,49 @@ const Hello = () => {
                     placeholder="Buscar por fecha"
                     keyboardType="default"
                 />
-                <TouchableOpacity style={styles.filterButton}>
+                <TouchableOpacity style={styles.filterButton} onPress={() => setModalVisible(true)}>
                     <Octicons name="filter" size={30} color="gray" />
                 </TouchableOpacity>
             </View>
             <ScrollView>
-            <View style={styles.card}>
-                <View style={{ marginHorizontal: 10 }}>
-                    <Text>Date</Text>
-                </View>
-                <View style={styles.dataCard}>
-                    <Image
-                        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }} style={{ width: 40, height: 40 }}
-                    />
-                    <View style={{ flex: 1, marginLeft: 20 }}>
-                        <Text>
-                            Nombre
-                        </Text>
-                        <Text>
-                            Apellido
-                        </Text>
+                <View style={styles.card}>
+                    <View style={{ marginHorizontal: 10 }}>
+                        <Text>Date</Text>
                     </View>
-                    <Text>
-                        Status
-                    </Text>
-                    <TouchableOpacity>
-                        <MaterialIcons name="message" size={25} color="gray" />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <MaterialIcons name="email" size={25} color="gray" />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <MaterialIcons name="phone" size={25} color="gray" />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <MaterialCommunityIcons name="message" size={25} color="gray" />
-                    </TouchableOpacity>
+                    <View style={styles.dataCard}>
+                        <Image
+                            source={{ uri: 'https://reactnative.dev/img/tiny_logo.png', }} style={{ width: 40, height: 40 }}
+                        />
+                        <View style={{ flex: 1, marginLeft: 20 }}>
+                            <Text>
+                                Nombre
+                            </Text>
+                            <Text>
+                                Apellido
+                            </Text>
+                        </View>
+                        <Text>
+                            Status
+                        </Text>
+                        <TouchableOpacity>
+                            <MaterialIcons name="message" size={25} color="gray" />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <MaterialIcons name="email" size={25} color="gray" />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <MaterialIcons name="phone" size={25} color="gray" />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <MaterialCommunityIcons name="message" size={25} color="gray" />
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-            
             </ScrollView>
+            {ModalClients({modalVisible, setModalVisible})}
             <View style={styles.containerButtonPlus}>
-                <TouchableOpacity style={styles.ButtonPlus} onPress={() => {navigation.navigate('Detalles')}}>
-                    <Octicons name="plus" size={30} color="#3B63FF"/>
+                <TouchableOpacity style={styles.ButtonPlus} onPress={() => { navigation.navigate('Detalles') }}>
+                    <Octicons name="plus" size={30} color="#3B63FF" />
                 </TouchableOpacity>
             </View>
         </View>
@@ -135,18 +152,22 @@ const styles = StyleSheet.create({
     ButtonPlus: {
         position: 'absolute',
         bottom: 50,
-        right: 25,        
-        borderWidth:1,
+        right: 25,
+        borderWidth: 1,
         backgroundColor: 'white',
-        borderColor:'white',
-        alignItems:'center',
-        justifyContent:'center',
-        width:60,
-        height:60,
-        borderRadius:100,
+        borderColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 60,
+        height: 60,
+        borderRadius: 100,
         elevation: 5,
-        opacity:0.9
-    }
+        opacity: 0.9
+    },
+    modalButtons: {
+        marginTop:10,
+        marginBottom:10,
+    },
 });
 
 
