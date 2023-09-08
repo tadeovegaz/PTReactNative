@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import Hello from "./pages/Hello";
 import Form from "./pages/Form";
 import Detalles from "./pages/Detalles";
+import EditarCliente from "./pages/EditarCliente";
+import DeleteClient from "./components/DeleteClients";
 
 
 
@@ -55,6 +57,8 @@ const App = () => {
           <Stack.Screen name="Hello" component={Hello} options={{headerShown: false}}/>
           <Stack.Screen name="Form" component={Form} options={{headerShown: false}}/>
           <Stack.Screen name="Detalles" component={Detalles} options={{headerShown: false}}/>
+          <Stack.Screen name="EditarCliente" component={EditarCliente} options={{headerShown: false}}/>
+          <Stack.Screen name="DeleteClients" component={DeleteClient} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>

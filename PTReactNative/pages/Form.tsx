@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Text, View, StyleSheet, FlatList, Button, TouchableOpacity, SafeAreaView, TextInput, Image, ScrollView } from "react-native";
-import RNPickerSelect from 'react-native-picker-select';
+import { Text, View, StyleSheet, FlatList, Button, TouchableOpacity, SafeAreaView, TextInput, Image, ScrollView, Modal } from "react-native";
+import { Picker } from '@react-native-picker/picker';
 
 
 const Form = () => {
 
     const [currentDate, setcurrentDate] = useState('');
+    const [isModalVisible, setisModalVisible] = useState(false);
+    const [selectedOption, setSelectedOption] = useState();
 
     useEffect(() => {
         var date = new Date().getDate()
@@ -19,8 +21,8 @@ const Form = () => {
 
     return (
         <View>
-            <Text style={styles.headerText}>Nuevo Cliente</Text>
             <ScrollView style={{}}>
+                <Text style={styles.headerText}>Nuevo Cliente</Text>
                 <View style={styles.containerForm}>
                     <Text style={styles.label}>Fecha de creación</Text>
                     <TextInput
@@ -29,51 +31,66 @@ const Form = () => {
                         defaultValue={currentDate}
                         editable={false}
                     />
-                </View>
-                <View style={styles.containerForm}>
                     <Text style={styles.label}>Nombre</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Ingresa tú nombre"
                         keyboardType="default"
                     />
-                </View>
-                <View style={styles.containerForm}>
                     <Text style={styles.label}>Referencia</Text>
                     <TextInput
                         style={styles.input}
-                        placeholder="Ingresa la fecha"
+                        placeholder="Ingresa la referencia"
                         keyboardType="default"
                     />
-                </View>
-                <View style={styles.containerForm}>
                     <Text style={styles.label}>Telefono</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Ingresa el telefono"
                         keyboardType="phone-pad"
                     />
-                </View>
-                <View style={styles.containerForm}>
                     <Text style={styles.label}>Email</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Ingresa el email"
                         keyboardType="email-address"
                     />
-                </View>
-                <View style={styles.containerForm}>
                     <Text style={styles.label}>Dirección</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Direccion"
                         keyboardType="default"
                     />
+                    <Text style={styles.label}>Comentarios</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Comentarios"
+                        keyboardType="default"
+                    />
+                    <Text style={styles.label}>Selecciona una opción:</Text>
+                    <View>
+                        <Picker
+                            // selectedValue={selectedOption}
+                            onValueChange={(itemValue, itemIndex) => setSelectedOption('Hello')} style={{}}
+                        >
+                            <Picker.Item label="Sin especificar" value="Sin especificar" />
+                            <Picker.Item label="Para instalar" value="Para instalar" />
+                            <Picker.Item label="En analisis" value="En analisis" />
+                            <Picker.Item label="Cancelado" value="Cancelado" />
+                            <Picker.Item label="En pagos" value="En pagos" />
+                            <Picker.Item label="Cotizado" value="Cotizado" />
+                            <Picker.Item label="Completo" value="Completo" />
+                        </Picker>
+                    </View>
+                    <View style={styles.firstButtons}>
+                        <TouchableOpacity style={styles.firstButton}>
+                            <Text style={{ fontSize: 15, color: 'white' }}>Crear cliente</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.firstButton}>
+                            <Text style={{ fontSize: 15, color: 'white' }}>Crear cliente y hacer analisis</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.containerForm}>
-
-                </View>
-
             </ScrollView>
         </View>
     )
@@ -103,5 +120,20 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 15,
         borderRadius: 10,
+    },
+    firstButtons: {
+        marginTop: 10,
+        marginBottom: 30,
+        justifyContent: 'space-between',
+    },
+    firstButton: {
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        elevation: 5,
+        backgroundColor: '#3B63FF',
+        borderColor: '#F5F5F5',
+        marginBottom: 20
     },
 })

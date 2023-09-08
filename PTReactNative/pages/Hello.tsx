@@ -80,9 +80,9 @@ const Hello = () => {
                     </View>
                 </View>
             </ScrollView>
-            {ModalClients({modalVisible, setModalVisible})}
+            {ModalClients({ modalVisible, setModalVisible })}
             <View style={styles.containerButtonPlus}>
-                <TouchableOpacity style={styles.ButtonPlus} onPress={() => { navigation.navigate('Detalles') }}>
+                <TouchableOpacity style={styles.ButtonPlus} onPress={() => { navigation.navigate('EditarCliente') }}>
                     <Octicons name="plus" size={30} color="#3B63FF" />
                 </TouchableOpacity>
             </View>
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     modalButtons: {
-        marginTop:10,
-        marginBottom:10,
+        marginTop: 10,
+        marginBottom: 10,
     },
 });
 

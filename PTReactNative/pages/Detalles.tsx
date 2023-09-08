@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, FlatList, Button, TouchableOpacity, SafeAreaView, TextInput, Image, ScrollView } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
+import DeleteClient from "../components/DeleteClients";
 
 
 const Detalles = (currentDate) => {
+
+    const [modalVisible, setModalVisible] = useState(false)
 
     return (
         <View>
@@ -31,17 +34,18 @@ const Detalles = (currentDate) => {
                         <TouchableOpacity style={styles.editButton} onPress={() => { console.log('editButton') }}>
                             <Octicons name="pencil" size={20} color="#0098E1" />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.trashButton} onPress={() => { console.log('trashButton') }}>
+                        <TouchableOpacity style={styles.trashButton} onPress={() => setModalVisible(true)}>
                             <Octicons name="trash" size={20} color="#E41200" />
                         </TouchableOpacity>
                     </View>
                 </View >
+                {DeleteClient({ modalVisible, setModalVisible })}
                 <View style={styles.firstButtons}>
-                    <TouchableOpacity style={styles.firstButton }>
-                        <Text style={{ fontSize: 11, color:'white' }}>HACER ANALISIS</Text>
+                    <TouchableOpacity style={styles.firstButton}>
+                        <Text style={{ fontSize: 11, color: 'white' }}>HACER ANALISIS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.firstButton}>
-                        <Text style={{ fontSize: 11, color:'white' }}>HACER COTIZACIÓN</Text>
+                        <Text style={{ fontSize: 11, color: 'white' }}>HACER COTIZACIÓN</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.labelCenter}>
@@ -49,16 +53,16 @@ const Detalles = (currentDate) => {
                 </View>
                 <View style={styles.firstButtons}>
                     <TouchableOpacity style={styles.secondButton}>
-                        <Text style={{ fontSize: 11, color:'white' }}>MAIN</Text>
+                        <Text style={{ fontSize: 11, color: 'white' }}>MAIN</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.secondButton}>
-                        <Text style={{fontSize: 11, color:'white'}}>ANALISIS</Text>
+                        <Text style={{ fontSize: 11, color: 'white' }}>ANALISIS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.secondButton}>
-                        <Text style={{ fontSize: 11, color:'white'}}>COTIZACIÓN</Text>
+                        <Text style={{ fontSize: 11, color: 'white' }}>COTIZACIÓN</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.secondButton}>
-                        <Text style={{ fontSize: 11, color:'white'}}>VENTA</Text>
+                        <Text style={{ fontSize: 11, color: 'white' }}>VENTA</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
