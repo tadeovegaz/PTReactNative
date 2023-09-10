@@ -7,16 +7,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useEffect, useState } from "react";
 import ModalClients from "../components/ModalClients";
 
-// const modalData = [
-//     { id: 1, text: 'Filtrar por fecha' },
-//     { id: 2, text: 'Filtrar por nombre' },
-//     { id: 3, text: 'Filtrar por estatus' },
-//     { id: 4, text: 'Sortear por fecha de menor a mayor' },
-//     { id: 5, text: 'Sortear por fecha de mayor a menor' },
-// ]
-
-
-
 const Hello = () => {
 
     const navigation = useNavigation();
@@ -82,7 +72,7 @@ const Hello = () => {
             </ScrollView>
             {ModalClients({ modalVisible, setModalVisible })}
             <View style={styles.containerButtonPlus}>
-                <TouchableOpacity style={styles.ButtonPlus} onPress={() => { navigation.navigate('EditarCliente') }}>
+                <TouchableOpacity style={styles.ButtonPlus} onPress={() => { navigation.navigate('Form') }}>
                     <Octicons name="plus" size={30} color="#3B63FF" />
                 </TouchableOpacity>
             </View>

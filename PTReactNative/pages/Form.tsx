@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 
 const Form = () => {
 
-    const [currentDate, setcurrentDate] = useState('');
+    const [currentDate, setcurrentDate] = useState('');//Para la fe
     const [isModalVisible, setisModalVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState();
 
@@ -71,7 +71,7 @@ const Form = () => {
                     <View>
                         <Picker
                             // selectedValue={selectedOption}
-                            onValueChange={(itemValue, itemIndex) => setSelectedOption('Hello')} style={{}}
+                            onValueChange={(itemValue, itemIndex) => setSelectedOption()} style={{}}
                         >
                             <Picker.Item label="Sin especificar" value="Sin especificar" />
                             <Picker.Item label="Para instalar" value="Para instalar" />
